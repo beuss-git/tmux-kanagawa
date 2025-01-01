@@ -175,6 +175,11 @@ main() {
         script="${script} not found!"
       fi
 
+    elif [ $plugin = "bus" ]; then
+      IFS=' ' read -r -a colors <<<$(get_tmux_option "@kanagawa-cwd-colors" "dark_gray white")
+      tmux set-option -g status-right-length 250
+      script="#($current_dir/bus.py)"
+
     elif [ $plugin = "cwd" ]; then
       IFS=' ' read -r -a colors <<<$(get_tmux_option "@kanagawa-cwd-colors" "dark_gray white")
       tmux set-option -g status-right-length 250
